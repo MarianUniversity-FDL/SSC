@@ -1,0 +1,110 @@
+﻿@model ASRFormViewModel
+
+@{
+    ViewData["Title"]="ASR Submission Form";
+}
+
+<h2>ASR Submission Form</h2>
+
+@if (Model!=null)
+{
+    <div class="form-container">
+        <form method="post" action="SubmitASRForm">
+            <div class="form-section header-section" id="headerSection">
+                <div class="header-content">
+                    <hgroup>
+                        <strong class="header-content-header">@Model.CourseDetail.InstructorName</strong>
+                        <br />
+                        <p class="header-content-subheader"><strong>@Model.CourseDetail.StudentName</strong> - @Model.CourseDetail.CourseNumber / @Model.CourseDetail.CourseType / @Model.CourseDetail.Semester</p>
+                    </hgroup>
+                </div>
+            </div>
+            <div class="form-section info-section" id="infoSection">
+                <label for="CurrentGrade">Current grade: </label>
+                <br />
+                @Html.DropDownListFor(a => a.SelectListModel.CurrentGrade,Model.SelectListModel.CurrentGradeOptions,"Select",new { @class = "form-box-select" })
+                @Html.ValidationMessageFor(a => a.SelectListModel.CurrentGrade,"", new {@class="text-danger"})
+                <br />
+                <label for="AttendanceConcern">The student attends classes: </label>
+                <br />
+                @Html.DropDownListFor(a => a.SelectListModel.AttendanceConcern,Model.SelectListModel.AttendanceConcernOptions,"Select",new { @class = "form-box-select" })
+                @Html.ValidationMessageFor(a => a.SelectListModel.AttendanceConcern,"",new { @class = "text-danger" })
+                <br />
+                <label for="EngagementConcern">Are you concerned with the student's engagement in class: </label>
+                <br />
+                @Html.DropDownListFor(a => a.SelectListModel.EngagementConcern,Model.SelectListModel.EngagementConcernOptions,"Select",new { @class = "form-box-select" })
+                @Html.ValidationMessageFor(a => a.SelectListModel.EngagementConcern,"",new { @class = "text-danger" })
+                <br />
+                <label for="HomeworkSubmitted">The student completes homework: </label>
+                <br />
+                @Html.DropDownListFor(a => a.SelectListModel.HomeworkSubmitted,Model.SelectListModel.HomeworkSubmittedOptions,"Select",new { @class = "form-box-select" })
+                @Html.ValidationMessageFor(a => a.SelectListModel.HomeworkSubmitted,"",new { @class = "text-danger" })
+                <br />
+                <label for="NonCognitiveConcern">Are you concerned with student's non-cognitive abilities: </label>
+                <br />
+                @Html.DropDownListFor(a => a.SelectListModel.NonCognitiveConcern,Model.SelectListModel.NonCognitiveConcernOptions,"Select",new { @class = "form-box-select" })
+                @Html.ValidationMessageFor(a => a.SelectListModel.NonCognitiveConcern,"",new { @class = "text-danger" })
+            </div>
+            <div class="form-section radio-section" id="radioSection">                
+                <label class="radio-button-label" for="StudentNotifiedASR">The student has been notified of their academic status:
+                </label>
+                <div class="radio-buttons">
+                    @Html.RadioButtonFor(a => a.RadioButtonModel.StudentNotifiedASR,true) <label>Yes</label>
+                    @Html.RadioButtonFor(a => a.RadioButtonModel.StudentNotifiedASR,false) <label>No</label>
+                </div>
+                <label class="radio-button-label" for="StudentConferenceArranged">A conference has been arranged: 
+                </label>
+                <div class="radio-buttons">
+                    @Html.RadioButtonFor(a => a.RadioButtonModel.StudentConferenceArranged,true) <label>Yes</label>
+                    @Html.RadioButtonFor(a => a.RadioButtonModel.StudentConferenceArranged,false) <label>No</label>
+                </div>
+                <a><strong>Refer student to...</strong></a>
+                <br />
+                <label class="radio-button-label" for="ReferalEnglish">Reading/Writing Specialist: 
+                </label>
+                <div class="radio-buttons">
+                    @Html.RadioButtonFor(a => a.RadioButtonModel.ReferalEnglish,true) <label>Yes</label>
+                    @Html.RadioButtonFor(a => a.RadioButtonModel.ReferalEnglish,false) <label>No</label>
+                </div>
+                <label class="radio-button-label" for="ReferalMath">Math Specialist: 
+                </label>
+                <div class="radio-buttons">
+                    @Html.RadioButtonFor(a => a.RadioButtonModel.ReferalMath,true) <label>Yes</label>
+                    @Html.RadioButtonFor(a => a.RadioButtonModel.ReferalMath,false) <label>No</label>
+                </div>
+                <label class="radio-button-label" for="ReferalScience">Science Specialist: 
+                </label>
+                <div class="radio-buttons">
+                    @Html.RadioButtonFor(a => a.RadioButtonModel.ReferalScience,true) <label>Yes</label>
+                    @Html.RadioButtonFor(a => a.RadioButtonModel.ReferalScience,false) <label>No</label>
+                </div>
+                <label class="radio-button-label" for="ReferalNursing">Nursing Specialist: 
+                </label>
+                <div class="radio-buttons">
+                    @Html.RadioButtonFor(a => a.RadioButtonModel.ReferalNursing,true) <label>Yes</label>
+                    @Html.RadioButtonFor(a => a.RadioButtonModel.ReferalNursing,false) <label>No</label>
+                </div>
+            </div>
+            <div class="form-section footer-section" id="footerSection">
+                <div style="display: none;">
+                    <input type="hidden" name="InstructorId" value="@Model.CourseDetail.InstructorId" />
+                    <input type="hidden" name="InstructorName" value="@Model.CourseDetail.InstructorName" />
+                    <input type="hidden" name="SectionId" value="@Model.CourseDetail.SectionId" />
+                    <input type="hidden" name="CourseNumber" value="@Model.CourseDetail.CourseNumber" />
+                    <input type="hidden" name="CourseName" value="@Model.CourseDetail.CourseName" />
+                    <input type="hidden" name="StudentId" value="@Model.CourseDetail.StudentId" />
+                </div>
+                <div class="text-area-container">
+                    @Html.TextAreaFor(a => a.CommentModel.Comments,new { @class = "form-text-area", @placeholder="Add Comments or Notes..." })
+                </div>
+                <div class="submit-button-container">
+                    <button type="submit" class="submit-button">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+}
+else
+{
+    <p>No course details available. Please select a course.</p>
+}

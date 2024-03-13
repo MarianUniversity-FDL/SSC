@@ -1,0 +1,316 @@
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+header {
+    text-align: center;
+    padding-top: 2em;
+    margin-bottom: 1em;
+}
+
+body {
+    margin-bottom: 60px;
+    font-family: "Segoe UI","Segoe",Tahoma,Helvetica,Arial,sans-serif;
+    background: linear-gradient(#084483 50%, #2d8bc0, white) fixed;
+}
+
+footer {
+    text-align: center;
+}
+
+h2, h3, h4 {
+    color: white;
+    text-align: center;
+}
+
+div, button, input, area, textarea, thead, tbody, tfoot, td, tr, select, form  {
+    border-radius: 4px;
+}
+
+.form-search-field {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.search-field-container {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+    .search-field-input {
+        width: 60%;
+        padding: 5px;
+        font-size: 16px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+    }
+    .search-field-button {
+        width: 10%;
+        padding: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+    }   
+    .search-field-button:hover {
+        background-color: #758dff;
+        color: white;
+        border: 1px solid #ccc;
+    }
+
+#search-results {
+    text-align: center;
+    width: 75%;
+    margin: 0 auto;
+    display: block;
+}
+    #search-results div:hover {
+        background-color: #eeeeee;
+    }
+
+.table-container {
+    text-align: center;
+    background: white;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 4px 4px 4px 4px;
+}
+    .table-container span {
+        text-align: center;
+        margin-top: 10px;
+        font-weight: bold;
+        font-size: larger;
+    }
+
+.table-box {
+    display: none;
+    column-width: auto;
+}   
+    .table-box table {
+        width: 100%;
+    }
+    .table-box thead {
+        font-weight: bold;
+    }
+
+#search-results button {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+}   
+    #search-results button:hover {
+        background-color: #758dff;
+        color: white;
+        border: 1px solid #ccc;
+    }
+
+/*ASR Form*/
+.form-container {
+    display: flex;
+    padding: 15px;
+    background-color: white;
+}
+
+.form-section {
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Header section styling */
+#headerSection {
+    width: 100%;
+}
+.header-section .header-content {
+    /* Styling specific to the header content */
+    text-align: center;
+    width: 100%;
+} .header-content-header {
+      font-size: larger;
+  }
+
+/* Info section styling */
+#infoSection {
+    width: 50%;
+    padding-left: 4em;
+}
+
+.info-section .form-box-select {
+    margin-bottom: 1em;
+    margin-left: 4em;
+    width: 25%;
+}
+
+/* Radio section styling */
+#radioSection {
+    width: 50%;
+    padding-left: 4em;
+}
+
+.radio-buttons input[type="radio"] {
+    margin-left: 4em;
+}
+
+/* Footer section styling */
+#footerSection {
+    width: 100%;
+}
+
+.footer-section .text-area-container .form-text-area {
+    width: 90%; 
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+}
+    .footer-section .submit-button-container {
+        text-align: right; 
+    }
+
+.submit-button {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    width: 5em;
+    padding: 5px;
+    margin-top: 10px;
+    margin-right: 4em;
+    border: 1px solid #ccc;
+}   
+    .submit-button:hover {
+        background-color: #758dff;
+        color: white;
+        border: 1px solid #ccc;
+    }
+
+/*Submission Page*/
+.submission-container {
+    background: white;
+    text-align: center;
+    padding-top: 4em;
+    padding-bottom: 4em;
+}
+
+#success {
+    font-size: 24px;
+    color: forestgreen;
+    font-weight: bold;
+    margin-bottom: 2em;
+}
+#failure {
+    font-size: 24px;
+    color: darkred;
+    font-weight: bold;
+    margin-bottom: 2em;
+}
+    #failure-information {
+        color: black;
+    }
+
+/*SCV */
+.table-container-link {
+    display: block;
+    color: inherit; 
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*GPA*/
+#gpaCalculator {
+    text-align: center;
+    background: white;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 4px 4px 4px 4px;
+}
+
+.gpa-results {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; 
+}
+    .gpa-results div {
+        flex: 1; 
+        text-align: center; 
+    }
+    .gpa-results p {
+        margin: 0;
+    }
+
+#courseTable {
+    width: 100%;
+    table-layout: fixed;
+    text-align: center;
+}
+    #courseTable th, #courseTable td {
+        equal-width: true;
+    }
+    #courseTable input[type="text"],
+    #courseTable input[type="number"],
+    #courseTable select {
+        width: 90%;
+        margin: auto;
+        display: block;
+    }
+
+.removeRow {
+    display: block;
+    margin: auto;
+}
+
+#buttonContainer {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+}
+    #buttonContainer button {
+        flex-grow: 1;
+        margin: 0 10px;
+    }
+
+.semester {
+    background: white;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 4px 4px 4px 4px;
+}
+.semester-summary {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}    
+    .semester-summary span {
+        display: inline-block;
+        flex: 1;
+    }
+    .semester-summary h3, .semester-summary p {
+        color: black;
+        margin: 0; 
+    }
+
+.semesterDetails {
+    background: white;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 4px 4px 4px 4px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+/*.semesterDetails table*/

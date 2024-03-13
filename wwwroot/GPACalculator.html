@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPA Calculator</title>
+    <link rel="stylesheet" href="css/GPACalcStyle.css"> 
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="images/marian_logo.png" alt="Logo">
+            <h2>Grade Point Average (GPA) Calculator</h2>
+        </div>
+    </header>
+
+    <div id="help">
+        <p>
+            The grade point average is obtained by dividing the total number of quality points
+            by the total number of credits. A cumulative average of 2.00 is required for graduation.
+            Courses in which F’s are received must be included in the computation of the grade
+            point average, unless the student repeats the course and earns a passing grade.
+            Courses taken on an S/U basis are not included in the computation of the grade point
+            average. (GPAs are not rounded up.) Courses offered at the pre-college level (001–009)
+            are not calculated in the GPA. Transfer and audit grades are not included in the
+            Marian University GPA.
+
+            If you want to raise your GPA the calculator below helps you determine how many
+            credit hours and what grades you will need to raise your current GPA. You will need
+            to review your SabreNet unofficial transcript and enter your Cumulative GPA Credits
+            and Overall GPA from the last completed semester.
+        </p>
+    </div>
+    <div class="form-container">
+        <form id="form">
+            <table class="table">
+                <thead id="thead">
+                    <tr>
+                        <td>
+                            <label>Cumulative GPA Credits</label><br>
+                            <input type="text" id="curCredit" placeholder="0 - 120.0+" />
+                        </td>
+                        <td>
+                            <label>Overall GPA (Cumulative)</label><br>
+                            <input type="text" id="curGPA" placeholder="0.00 - 4.00" />
+                        </td>
+                        <td>
+                            <label>Calculated GPA</label><br>
+                            <input type="text" id="calGPA" />
+                        </td>
+                        <td>
+                            <button type="button" id="btnHelp" onclick="onHelpClick()">Help</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tlabel">
+                            <label>Course Name</label>
+                        </td>
+                        <td class="tlabel">
+                            <label>Course Credit</label>
+                        </td>
+                        <td class="tlabel">
+                            <label>Grade</label>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    <tr>
+                        <td>
+                            <input type="text" id="course0" class="course" placeholder="Gen 101, Bio 205, etc.." />
+                        </td>
+                        <td>
+                            <input type="text" id="credit0" class="credit" value="" placeholder="0.5 - 3.00" />
+                        </td>
+                        <td>
+                            <select id="grade0" class="grade"></select>
+                        </td>
+                        <td>
+                            <button type="button" class="removeRow" onclick="delRow(this)">X</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="course1" class="course" placeholder="Gen 101, Bio 205, etc.." />
+                        </td>
+                        <td>
+                            <input type="text" id="credit1" class="credit" value="" placeholder="0.5 - 3.00" />
+                        </td>
+                        <td>
+                            <select id="grade1" class="grade"></select>
+                        </td>
+                        <td>
+                            <button type="button" class="removeRow" onclick="delRow(this)">X</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="course2" class="course" placeholder="Gen 101, Bio 205, etc.." />
+                        </td>
+                        <td>
+                            <input type="text" id="credit2" class="credit" value="" placeholder="0.5 - 3.00" />
+                        </td>
+                        <td>
+                            <select id="grade2" class="grade"></select>
+                        </td>
+                        <td>
+                            <button type="button" class="removeRow" onclick="delRow(this)">X</button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot id="tfoot">
+                    <tr>
+                        <td>
+                            <button type="button" id="addRow" onclick="insRow()">Add Row</button>
+                        </td>
+                        <td>
+                            <button type="button" id="calcGPA" onclick="calculateGPA()">Calculate GPA</button>
+                        </td>
+                        <td>
+                            <button type="button" id="windowPrint" onclick="window.print()">Print</button>
+                        </td>
+                        <td>
+                            <button type="button" id="clearAll" onclick="clrAll()">Clear</button>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </form>
+    </div>
+    <script src="js/GPACalcScript.js"></script> 
+</body>
+</html>

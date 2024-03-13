@@ -1,0 +1,19 @@
+﻿@model SCVImageViewModel
+
+@{
+    ViewData["Title"]="SC Viewer";
+}
+
+<h2>SC Viewer</h2>
+
+@if (Model.DocumentFilePath!=null&&Model.DocumentFilePath.Any())
+{
+    foreach (var imagePath in Model.DocumentFilePath)
+    {
+        <img src="@Url.Action("GetImage", "SCV", new { imagePath = imagePath.DocumentFilePath })" alt="Document Image" />
+    }
+}
+else
+{
+    <p>No images found.</p>
+}

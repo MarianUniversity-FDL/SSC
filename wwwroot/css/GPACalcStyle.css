@@ -1,0 +1,133 @@
+﻿body {
+    font-family: "Segoe UI","Segoe",Tahoma,Helvetica,Arial,sans-serif;
+    background: linear-gradient(#084483 50%, #2d8bc0, white) fixed;
+}
+
+.container {
+    text-align: center;
+    align-content: center;
+    color: white;
+}
+
+input {
+    border-radius: 6px;
+    border-width: 1px;
+    width: 50%;
+    min-width: 70px;
+}
+
+.table {
+    background-color: white;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: #2d8bc0;
+    border-width: 2px;
+}
+
+#h4-help {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 1px;
+}
+
+label {
+    color: black;
+    font-weight: bold;
+    font-size: 75%;
+}
+
+.tlabel {
+    color: black;
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+select {
+    border-radius: 6px;
+    width: 52%;
+    min-width: 70px;
+}
+
+button {
+    border-radius: 6px;
+    text-align: center;
+    border-style: solid;
+    font-weight: bolder;
+    font-size: 80%;
+}
+
+#calGPA {
+    font-weight: bolder;
+    text-align: center;
+    background-color: lightgrey;
+}
+
+#help {
+    background-color: white;
+    color: black;
+    text-align: left;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 6px;
+    display: none;
+}
+
+#btnHelp {
+    background: #2d8bc0;
+    color: white;
+    border-color: black;
+    width: 55%;
+    min-width: 47px;
+}
+
+.removeRow {
+    background-color: red;
+    border-color: red;
+    width: 55%;
+    min-width: 47px;
+}
+
+#addRow {
+    background-color: green;
+    border-color: green;
+    color: white;
+    width: 52%;
+    min-width: 70px;
+}
+
+#calcGPA {
+    background-color: #084483;
+    border-color: #084483;
+    color: white;
+    width: 52%;
+    min-width: 70px;
+}
+
+#clearAll {
+    background-color: red;
+    border-color: black;
+    width: 55%;
+    min-width: 47px;
+}
+
+#windowPrint {
+    background-color: white;
+    border-color: grey;
+    width: 52%;
+    min-width: 70px;
+    color: black;
+}
+
+footer {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 99%;
+    position: absolute;
+    bottom: 0;
+    color: darkgray;
+}

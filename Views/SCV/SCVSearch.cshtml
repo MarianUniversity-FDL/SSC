@@ -1,0 +1,33 @@
+﻿@model SCVViewModel
+
+@{
+    ViewData["Title"]="SC Viewer Search";
+}
+
+<h2>SC Viewer Search</h2>
+
+@if (Model!=null)
+{
+    <form method="post" class="form-search-field" action="@Url.Action("SCVSearch", "SCV")">
+        <div class="search-field-container">
+            <input type="hidden" class="search-field" name="peopleCodeId" value="@Model.PeopleCodeId" />
+            <input type="text" class="search-field-input" name="searchString" placeholder="Search with Student First, Middle, or Last Name, or Date of Birth..." />
+            <button type="submit" class="search-field-button">Search</button>
+        </div>
+    </form>
+}
+else
+{
+    <h4>No registrar role found.</h4>
+}
+
+<div id="search-results">
+    @foreach (var student in Model.SearchResults)
+    {
+        <a href="@Url.Action("SCViewer", "SCV", new { DocumentId = student.DocumentId })" class="table-container-link">
+            <div class="table-container">
+                <span>@student.FirstName @student.MiddleName @student.LastName</span>
+            </div>
+        </a>
+    }
+</div>

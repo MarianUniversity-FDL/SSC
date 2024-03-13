@@ -1,0 +1,101 @@
+﻿@model ASRSearchViewModel
+
+@{
+    ViewData["Title"]="ASR Student Search";
+    int i = 0;
+}
+
+<h2>ASR Student Search</h2>
+
+@if (Model!=null)
+{
+    <div>
+        <h4>@Model.InstructorDetails.InstructorName - @Model.InstructorDetails.CurrentSemester</h4>
+    </div>
+    <form method="post" class="form-search-field" action="@Url.Action("ASRSearch", "ASR")">
+        <div class="search-field-container">
+            <input type="hidden" class="search-field" name="peopleCodeId" value="@Model.InstructorDetails.PeopleCodeId" />
+            <input type="text" class="search-field-input" name="searchString" placeholder="Search with Student First or Last Name, or Course ID..." />
+            <button type="submit" class="search-field-button">Search</button>
+        </div>
+    </form>
+}
+else
+{
+    <h4>No instructor details found.</h4>
+}
+
+<div  id="search-results">
+    @foreach (var studentGroup in Model.StudentCourses.GroupBy(sc => sc.StudentId))
+    {
+        <div class="table-container" style="cursor:pointer;" data-target="@($"details{i}")">
+            <span>@studentGroup.First().StudentName</span>
+            <div class="table-box" id="@($"details{i}")">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Course ID</td>
+                            <td>Course Name</td>
+                            <td>Course Type</td>
+                            <td>Days</td>
+                            <td>Section ID</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var course in studentGroup)
+                        {
+                            <tr>
+                                <form method="post" action="@Url.Action("SelectCourse", "ASR")">
+                                <td>@course.CourseNumber</td>
+                                <td>@course.CourseName</td>
+                                <td>@course.CourseType</td>
+                                <td>@course.Section</td>
+                                <td>@course.SectionId</td>
+                                <td>
+                                    <input type="hidden" name="peopleCodeId" value="@Model.InstructorDetails.PeopleCodeId" />
+                                    <input type="hidden" name="instructorName" value="@Model.InstructorDetails.InstructorName" />
+                                    <input type="hidden" name="semester" value="@Model.InstructorDetails.CurrentSemester" />
+                                    <input type="hidden" name="studentId" value="@studentGroup.Key" />
+                                    <input type="hidden" name="studentName" value="@studentGroup.First().StudentName" />
+                                    <input type="hidden" name="courseNumber" value="@course.CourseNumber" />
+                                    <input type="hidden" name="courseName" value="@course.CourseName" />
+                                    <input type="hidden" name="courseType" value="@course.CourseType" />
+                                    <input type="hidden" name="section" value="@course.Section" />
+                                    <input type="hidden" name="sectionId" value="@course.SectionId" />
+                                    <button type="submit">Select</button>
+                                </td>
+                                </form>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        i++;
+    }
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        var tableContainers = document.querySelectorAll('.table-container');
+
+        tableContainers.forEach(function (tableContainer) {
+
+            tableContainer.addEventListener('click', function () {
+
+                var targetId = this.getAttribute('data-target');
+                var targetElement = document.getElementById(targetId);
+
+                if (targetElement.style.display === "none" || targetElement.style.display === "") {
+                    targetElement.style.display = "block";
+                } else {
+                    targetElement.style.display = "none";
+                }
+            });
+
+        });
+
+    });
+</script>

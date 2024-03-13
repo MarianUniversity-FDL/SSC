@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"]="ASR Form Submission";
+    var instructorId = ViewData["InstructorId"] as string;
+    var currentTimestamp = DateTime.Now;
+}
+
+<h2>ASR Submission Form</h2>
+
+@if (ViewData["Message"]=="Submission was successful.")
+{
+    <div class="submission-container">
+        <div id="success">
+            <a>The form was successfully processed!</a>
+        </div>
+        <br />
+        <div>
+            <a href="/SSC/ASR/ASRSearch?PeopleCodeId=@instructorId" class="btn btn-primary">Click Here to Submit Another Student</a>
+        </div>
+    </div>
+}
+else {
+    <div class="submission-container">
+        <div id="failure">
+            <a>Something went wrong!</a>
+        </div>
+        <div id="failure-information">
+            <p>Please take a screenshot of the error and email it to the IT Helpdesk.</p>
+            <br />
+            <P>@currentTimestamp.ToString("yyyy-MM-dd HH:mm:ss")</P>
+            <p>@ViewData["Messsage"]</p>
+        </div>
+    </div>
+}

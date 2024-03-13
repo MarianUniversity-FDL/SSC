@@ -1,0 +1,147 @@
+﻿@model IEnumerable<StudentCourseHistory>
+
+@{
+    ViewData["Title"]="GPA Calculator";
+}
+
+<h2>Gradepoint Average (GPA) Calculator</h2>
+
+<div id="gpaCalculator">
+    <div id="gpaResults" class="gpa-results">
+        <div><p><strong>Current Total Earned Credits: </strong><span id="totalEarnedCredits">@Model.Where(g => g.AffectsGPA&&g.CourseGPA>0.000m).Sum(g => g.Credit)</span></p></div>
+        <div><p><strong>Current GPA: </strong><span id="currentGPA"></span></p></div>
+        <div><p><strong>Calculated GPA: </strong><span id="calculatedGPA"></span></p></div>
+    </div>
+
+    <div id="courseInputArea">
+        <table id="courseTable">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Course Credit</th>
+                    <th>Grade</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" name="courseName" /></td>
+                    <td><input type="number" name="courseCredit" min="0" step="0.01" /></td>
+                    <td>
+                        <select name="grade">
+                            <option value="4.00">A</option>
+                            <option value="3.67">A-</option>
+                            <option value="3.33">B+</option>
+                            <option value="3.00">B</option>
+                            <option value="2.67">B-</option>
+                            <option value="2.33">C+</option>
+                            <option value="2.00">C</option>
+                            <option value="1.67">C-</option>
+                            <option value="1.33">D+</option>
+                            <option value="1.00">D</option>
+                            <option value="0.67">D-</option>
+                            <option value="0.00">F</option>
+                        </select>
+                    </td>
+                    <td><button type="button" class="removeRow">Remove</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="buttonContainer">
+            <button type="button" id="addRow">Add Row</button>
+            <button type="button" id="calculateGPA">Calculate GPA</button>
+            <button type="button" id="clearRows">Clear</button>
+        </div>
+
+    </div>
+</div>
+
+<div id="academicHistory">
+    @foreach (var group in Model.GroupBy(m => new { m.AcademicYear,m.AcademicTerm,m.SemesterSequence }).OrderByDescending(g => g.Key.SemesterSequence))
+    {
+        <div class="semester" data-year="@group.Key.AcademicYear" data-term="@group.Key.AcademicTerm">
+            <div class="semester-summary">
+                <span><p><strong>@group.Key.AcademicTerm @group.Key.AcademicYear</strong></p></span>
+                <span><p><strong>Total Credits: </strong>@group.Where(g => g.AffectsGPA&&g.CourseGPA>0.00m).Sum(g => g.Credit)</p></span>
+                <span><p><strong>GPA: </strong>@*avg gpa*@</p></span>
+            </div>
+            <table class="semesterDetails" style="display:none;">
+                @foreach (var course in group)
+                {
+                    <tr>
+                        <td><strong>@course.CourseId (@course.CourseType)</strong> - @course.CourseName</td>
+                        <td><strong>Credits:</strong> @course.Credit</td>
+                        <td><strong>Grade:</strong> @course.Grade</td>
+                        <td><strong>GPA:</strong> @course.CourseGPA</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="~/path/to/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Function to add a new row for course input
+            $("#addRow").click(function () {
+                const newRow = `<tr>
+                                    <td><input type="text" name="courseName" /></td>
+                                    <td><input type="number" name="courseCredit" min="0" step="0.01" /></td>
+                                    <td>
+                                        <select name="grade">
+                                            <option value="4.00">A</option>
+                                            <option value="3.67">A-</option>
+                                            <option value="3.33">B+</option>
+                                            <option value="3.00">B</option>
+                                            <option value="2.67">B-</option>
+                                            <option value="2.33">C+</option>
+                                            <option value="2.00">C</option>
+                                            <option value="1.67">C-</option>
+                                            <option value="1.33">D+</option>
+                                            <option value="1.00">D</option>
+                                            <option value="0.67">D-</option>
+                                            <option value="0.00">F</option>
+                                        </select>
+                                    </td>
+                                    <td><button type="button" class="removeRow">Remove</button></td>
+                                </tr>`;
+                $("#courseTable tbody").append(newRow);
+            });
+
+            // Function to remove a row
+            $(document).on("click", ".removeRow", function () {
+                $(this).closest("tr").remove();
+            });
+
+            // Function to calculate and display GPA
+            $("#calculateGPA").click(function () {
+                let totalQualityPoints = 0;
+                let totalCredits = 0;
+                $("#courseTable tbody tr").each(function () {
+                    const credit = parseFloat($(this).find('input[name="courseCredit"]').val());
+                    const grade = parseFloat($(this).find('select[name="grade"]').val());
+                    if (!isNaN(credit) && !isNaN(grade)) {
+                        totalCredits += credit;
+                        totalQualityPoints += grade * credit;
+                    }
+                });
+
+                const calculatedGPA = totalCredits > 0 ? totalQualityPoints / totalCredits : 0;
+                $("#calculatedGPA").text(calculatedGPA.toFixed(2));
+            });
+
+            // Function to clear all input rows except for the first one
+            $("#clearRows").click(function () {
+                $("#courseTable tbody tr").not(":first").remove();
+                $("#courseTable tbody tr:first input, #courseTable tbody tr:first select").val('');
+            });
+
+            // Toggle visibility of course details
+            $(".semester").click(function () {
+                $(this).find(".semesterDetails").toggle();
+            });
+        });
+    </script>
+}
